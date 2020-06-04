@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine;
+
+public class TimerText : MonoBehaviour
+{
+    public Text timerText;
+    private float startTime;
+    private bool gameisover = false;
+    public Text gameOverTextDisplay;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        startTime = 10f;  
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float t= startTime - Time.time; 
+  
+        string minutes = ((int)t / 60).ToString();
+        string seconds = (t % 60).ToString("f2");
+
+        timerText.text = minutes + ":" + seconds;
+
+        if (t<0.0)
+        {
+            endGame();
+        }
+        
+    }
+    void endGame()
+    {
+       // guiTexture.enabled = true;
+        Time.timeScale = 0;
+        gameisover = true;
+        gameOverTextDisplay.text = "GameOver";
+        
+
+    }
+}
